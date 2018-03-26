@@ -5,10 +5,10 @@ Collection of useful, generic stuff.
 Mounts an active directory share, using a domain account and kerberos authentication. 
 
 ## [apt.sh](apt.sh)
-Contains miscellanious apt/apt-get commands.
+Contains miscellaneous apt/apt-get commands.
 
 ## [useful_snippets.sh](useful_snippets.sh)
-Contains miscellanious bash script snippets.
+Contains miscellaneous bash script snippets.
 
 ## [install_apache_php_71_56.sh](install_apache_php_71_56.sh)
 Installs apache with both php 7.1 and php 5.6 concurrently.
