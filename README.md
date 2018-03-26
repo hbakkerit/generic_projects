@@ -5,7 +5,7 @@ Collection of useful, generic stuff.
 Mounts an active directory share, using a domain account and kerberos authentication. 
 
 ## [apt.sh](apt.sh)
-Contains useful apt/apt-get commands.
+Contains miscellanious apt/apt-get commands.
 
 ## [useful_snippets.sh](useful_snippets.sh)
 Contains miscellanious bash script snippets.
