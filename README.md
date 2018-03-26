@@ -15,3 +15,6 @@ Installs apache with both php 7.1 and php 5.6 concurrently.
 
 ## [install_apache_solr_postgresql.sh](install_apache_solr_postgresql.sh)
 Installs apache solr 4.1.0 and solr 4.10.1 concurrently, and postgresql. 
+
+## [mysql_commands.md](mysql_commands.md)
+Contains some useful mysql commands. 
