@@ -27,10 +27,14 @@ apt-get install -y wget unzip
 # install terraform
 wget -NP ${TEMP_INSTALL_DIR} https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_${TERRAFORM_ARCHITECTURE}.zip
 unzip -o ${TEMP_INSTALL_DIR}/terraform_${TERRAFORM_VERSION}_linux_${TERRAFORM_ARCHITECTURE}.zip -d ${TERRAFORM_HOME}
-#export PATH=$PATH:${TERRAFORM_HOME}
+export PATH=${PATH}:${TERRAFORM_HOME}
+echo PATH=\"${PATH}\" > /etc/environment
+
+# creating a tag
+echo "APP=Terraform" >> /etc/environment
 
 # verify
-echo""
+echo ""
 terraform --version
 
 # cleanup
