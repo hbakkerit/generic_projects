@@ -20,7 +20,7 @@ fi
 
 # install basic packages
 echo "Updating packages..."
-#apt-get update -y
+apt-get update -y
 echo "Installing basic packages..."
 apt-get install -y wget unzip
 
