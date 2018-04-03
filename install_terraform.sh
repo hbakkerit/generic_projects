@@ -6,17 +6,8 @@ TERRAFORM_ARCHITECTURE=amd64
 TERRAFORM_HOME=/opt/terraform
 TEMP_INSTALL_DIR=/tmp
 
-# check if the distro is Ubuntu
-if [[ ${distro} != ${intended_distro} ]]; then
-  echo "This script should run on the Ubuntu distribution" 
-  exit 1
-fi
-
-# check if user is root
-if [[ ${EUID} -ne 0 ]]; then
-  echo "This script must be run as root" 
-  exit 1
-fi
+if [[ ${distro} != ${intended_distro} ]]; then echo "This script should run on the Ubuntu distribution"; exit 1; fi # checks whether the distro is Ubuntu
+if [[ ${EUID} -ne 0 ]]; then echo "This script must be run as root"; exit 1; fi # checks whether the user is root
 
 # install basic packages
 echo "Updating packages..."
