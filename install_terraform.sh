@@ -3,7 +3,7 @@ distro=$(gawk -F= '/^NAME/{print $2}' /etc/os-release)
 intended_distro=\"Ubuntu\"
 TERRAFORM_VERSION=0.11.5
 TERRAFORM_ARCHITECTURE=amd64
-TERRAFORM_HOME=/bin
+TERRAFORM_HOME=/opt/terraform
 TEMP_INSTALL_DIR=/tmp
 
 # check if the distro is Ubuntu
