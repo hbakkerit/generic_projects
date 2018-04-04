@@ -22,7 +22,7 @@ export PATH=${PATH}:${TERRAFORM_HOME}
 echo PATH=\"${PATH}\" > /etc/environment
 
 # creating a tag
-echo "APP=Terraform" >> /etc/environment
+grep -q -F "APP=Terraform" /etc/environment || echo "APP=Terraform" >> /etc/environment
 
 # verify
 echo ""
