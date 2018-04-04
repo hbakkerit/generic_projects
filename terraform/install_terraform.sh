@@ -27,6 +27,8 @@ echo "APP=Terraform" >> /etc/environment
 # verify
 echo ""
 terraform --version
+echo""
+echo "please logoff and login again for all changes to take effect"
 
 # cleanup
 rm -f ${TEMP_INSTALL_DIR}/terraform_${TERRAFORM_VERSION}_linux_${TERRAFORM_ARCHITECTURE}.zip

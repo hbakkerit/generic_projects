@@ -4,3 +4,5 @@ if [[ ${distro} != ${intended_distro} ]]; then echo "This script should run on t
 if [[ ${EUID} -ne 0 ]]; then echo "This script must be run as root"; exit 1; fi # checks whether the user is root
 
 ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -q -N ""
+
+echo "please distribute the ssh pubkey to the relevant services"
