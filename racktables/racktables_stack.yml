@@ -1,0 +1,87 @@
+##########################################################
+# Racktables setup for Docker.
+#
+# author: Hessel Bakker [h.bakkerit@gmail.com]
+#
+
+version: "3.1"
+
+services:
+  db:
+    image: mysql:5.7.21
+    volumes:
+      - database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      MYSQL_DATABASE: racktables
+      MYSQL_USER: racktables
+      MYSQL_PASSWORDFILE: /run/secrets/mysql_password
+    networks:
+      racktables_internal:
+        aliases:
+          - db
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        # Hard limit - Docker does not allow to allocate more
+        limits:
+          cpus: '1'
+          memory: 1024M
+    secrets:
+      - mysql_root_password
+      - mysql_password
+
+  app:
+    depends_on:
+      - db
+    image: incodehq/racktables:1.0.5
+    volumes:
+      - app_data:/var/www/
+    ports:
+      - 3306:3306
+    networks:
+      racktables_internal:
+        aliases:
+          - app
+      traefik_traefik:
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.port=80"
+        - "traefik.docker.network=traefik_traefik"
+        - "traefik.entrypoints=http"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.frontend.rule=Host:racktables.int.prd.ecpnv.com, racktables.ecp.loc"  # Rename
+        - "traefik.backend=racktables"                        # Rename
+        - "traefik.backend.loadbalancer.stickiness=true"
+        - "traefik.backend.loadbalancer.method=drr"
+        - "traefik.backend.healthcheck.path=/wicket"
+        - "traefik.backend.healthcheck.interval=10s"
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        # Hard limit - Docker does not allow to allocate more
+        limits:
+          cpus: '1'
+          memory: 1024M
+secrets:
+  mysql_root_password:
+    external: true
+  mysql_password:
+    external: true
+
+networks:
+  racktables_internal:
+    external: false
+  traefik_traefik:
+    external: true
+volumes:
+    database:
+    app_data:
