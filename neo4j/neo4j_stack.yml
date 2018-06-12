@@ -1,0 +1,34 @@
+version: '3.1'
+
+services:
+   app:
+     image: neo4j:3.3
+     ports:
+       - "7687:7687"
+     volumes:
+       - neo4j_data:/data
+     networks:
+       - traefik_traefik
+     deploy:
+       labels:
+         - "traefik.enable=true"
+         - "traefik.port=7474"
+         - "traefik.docker.network=traefik_traefik"
+         #- "traefik.entrypoints=https"
+         #- "traefik.frontend.passHostHeader=true"
+         - "traefik.frontend.rule=Host:neo4j.example.com"
+         #- "traefik.backend.healthcheck.path=/auth"
+         #- "traefik.backend.healthcheck.interval=10s"
+       replicas: 1
+       restart_policy:
+         condition: any
+       placement:
+         constraints:
+           - node.hostname == hostname
+
+volumes:
+    neo4j_data:
+
+networks:
+    traefik_traefik:
+      external: true
