@@ -13,3 +13,15 @@ To override values in a chart, use either the ‘–values’ flag and pass in a
 ## with value files
 you can specify the ‘–values’/‘-f’ flag multiple times. The priority will be given to the last (right-most) file specified. The --dry-run and --debug flags are used to generate the yaml files but not install them:
 ```helm install -f <values.yaml> -f <override.yaml> --dry-run --debug ./chart```
+
+
+# inspecting charts and values
+## helm lint
+examines a chart for possible issues
+### syntax
+```helm lint [flags] PATH```
+
+## helm inspect
+inspect a chart
+### syntax
+```helm inspect [CHART]```
