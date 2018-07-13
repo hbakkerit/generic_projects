@@ -25,3 +25,10 @@ examines a chart for possible issues
 inspect a chart
 ### syntax
 ```helm inspect [CHART]```
+
+
+
+## helm rollback
+This command rolls back a release to a previous revision.
+### syntax
+ helm rollback [flags] [RELEASE] [REVISION]
