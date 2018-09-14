@@ -15,7 +15,14 @@ apt-get update -y
 echo "Installing basic packages..."
 apt-get install -y wget unzip
 
+
 # install terraform
+
+## removing old versions
+if [ -d "$TERRAFORM_HOME" ]; then
+  rm -rf $TERRAFORM_HOME
+fi
+## installing terraform
 wget -NP ${TEMP_INSTALL_DIR} https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_${TERRAFORM_ARCHITECTURE}.zip
 unzip -o ${TEMP_INSTALL_DIR}/terraform_${TERRAFORM_VERSION}_linux_${TERRAFORM_ARCHITECTURE}.zip -d ${TERRAFORM_HOME}
 export PATH=${PATH}:${TERRAFORM_HOME}
