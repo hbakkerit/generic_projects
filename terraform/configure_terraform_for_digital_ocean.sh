@@ -25,3 +25,4 @@ grep -q -F "SSH_FINGERPRINT=${SSH_FINGERPRINT}" /etc/environment || echo "SSH_FI
 
 git clone ${TERRAFORM_CONFIG_REPO} ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}
 cd ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR} && terraform init
+echo "Install script finished, go to ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR} to find your configuration"
