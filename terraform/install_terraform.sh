@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 distro=$(gawk -F= '/^NAME/{print $2}' /etc/os-release)
 intended_distro=\"Ubuntu\"
-TERRAFORM_VERSION=0.11.5
+TERRAFORM_VERSION=0.11.8
 TERRAFORM_ARCHITECTURE=amd64
 TERRAFORM_HOME=/opt/terraform
 TEMP_INSTALL_DIR=/tmp
@@ -28,7 +28,7 @@ grep -q -F "APP=Terraform" /etc/environment || echo "APP=Terraform" >> /etc/envi
 echo ""
 terraform --version
 echo""
-echo "please logoff and login again for all changes to take effect"
+echo "NOTE: please relogin for all changes to take effect"
 
 # cleanup
 rm -f ${TEMP_INSTALL_DIR}/terraform_${TERRAFORM_VERSION}_linux_${TERRAFORM_ARCHITECTURE}.zip
