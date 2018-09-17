@@ -31,7 +31,6 @@ read -e -p 'please input your Terraform configuration repository (git): ' TERRAF
 
 git clone ${TERRAFORM_CONFIG_REPO} ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}
 cd ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR} && terraform init
-echo "Install script finished, go to ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR} to find your configuration"
 
 ## creating a tag
 grep -q -F "APP=Terraform" /etc/environment || echo "APP=Terraform" >> /etc/environment
@@ -39,8 +38,10 @@ grep -q -F "APP=Terraform" /etc/environment || echo "APP=Terraform" >> /etc/envi
 # verify
 echo ""
 terraform --version
-echo""
-echo "NOTE: please relogin for all changes to take effect"
+bash --login
 
 # cleanup
 rm -f ${TEMP_INSTALL_DIR}/terraform_${TERRAFORM_VERSION}_linux_${TERRAFORM_ARCHITECTURE}.zip
+
+# finish
+echo "Install script finished, go to ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR} to find your configuration"
