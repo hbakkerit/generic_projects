@@ -5,4 +5,5 @@ if [[ ${EUID} -ne 0 ]]; then echo "This script must be run as root"; exit 1; fi 
 
 ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -q -N ""
 
-echo "please distribute the ssh pubkey to the relevant services"
+echo "Please distribute the ssh pubkey to the relevant services:"
+cat ~/.ssh/id_ed25519.pub
