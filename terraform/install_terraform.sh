@@ -34,7 +34,7 @@ echo "This script assumes an existing terraform configuration repository (git), 
 read -e -p 'please input your Terraform configuration repository (git): ' TERRAFORM_CONFIG_REPO
 
 git clone ${TERRAFORM_CONFIG_REPO} ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}
-cd ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR} && terraform init
+cd ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}
 
 ## creating a tag
 grep -q -F "APP=Terraform" /etc/environment || echo "APP=Terraform" >> /etc/environment
