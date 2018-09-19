@@ -32,6 +32,7 @@ read -e -p 'please input your Terraform configuration repository (git): ' TERRAF
 git clone ${TERRAFORM_CONFIG_REPO} ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}
 # ensure that dir gets created if git doesn't
 if [ -d "${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}" ]; then
+  echo "Couldn't find ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}, so creating it.."
   mkdir ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}
 fi
 cd ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR} && terraform init
