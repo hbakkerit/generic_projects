@@ -19,6 +19,10 @@ echo "Installing basic packages..." && apt-get install -y git wget unzip
 if [ -d "$TERRAFORM_HOME" ]; then
   rm -rf $TERRAFORM_HOME
 fi
+if [ -d "${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}" ]; then
+  rm -rf ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}
+fi
+
 ## installing terraform
 wget -NP ${TEMP_INSTALL_DIR} https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_${TERRAFORM_ARCHITECTURE}.zip
 unzip -o ${TEMP_INSTALL_DIR}/terraform_${TERRAFORM_VERSION}_linux_${TERRAFORM_ARCHITECTURE}.zip -d ${TERRAFORM_HOME}
@@ -30,11 +34,6 @@ echo "This script assumes an existing terraform configuration repository (git), 
 read -e -p 'please input your Terraform configuration repository (git): ' TERRAFORM_CONFIG_REPO
 
 git clone ${TERRAFORM_CONFIG_REPO} ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}
-# ensure that dir gets created if git doesn't
-if [ -d "${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}" ]; then
-  echo "Couldn't find ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}, so creating it.."
-  mkdir ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR}
-fi
 cd ${TERRAFORM_HOME}/${TERRAFORM_CONFIG_SUBDIR} && terraform init
 
 ## creating a tag
