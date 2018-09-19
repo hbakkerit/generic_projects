@@ -42,7 +42,6 @@ grep -q -F "APP=Terraform" /etc/environment || echo "APP=Terraform" >> /etc/envi
 # verify
 echo ""
 terraform --version
-bash --login
 
 # cleanup
 rm -f ${TEMP_INSTALL_DIR}/terraform_${TERRAFORM_VERSION}_linux_${TERRAFORM_ARCHITECTURE}.zip

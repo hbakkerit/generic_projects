@@ -19,7 +19,7 @@ chmod 750 ./*.sh
 # generate ssh key
 ./generate_ssh_key.sh
 
-read -p "Do you want to configure Digital Ocean as a provider for Terraform? (y/n) " -n 1 -r
+read -p "Do you want to configure Digital Ocean as a provider for Terraform (y/n)? " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -27,10 +27,12 @@ then
 ./configure_digital_ocean_provider.sh
 fi
 
-read -p "Do you want to configure Azure as a provider for Terraform? (y/n) " -n 1 -r
+read -p "Do you want to configure Azure as a provider for Terraform (y/n)? " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 # configure terraform for digital ocean
 ./configure_azure_provider.sh
 fi
+
+echo "Install script finished, please logoff and logon again for the changes to take place"
